@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include <QTime>
 #include <QMainWindow>
+#include "stopwatch.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -16,11 +17,6 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-signals:
-    void sendStart();
-    void sendStop();
-    void sendClear();
-    void nextCirlce();
 public slots:
     void timeChanged(const QTime& time);
     void getCircleTime(const QString message);
@@ -34,5 +30,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     bool active;
+    Stopwatch* stopwatch;
 };
 #endif // MAINWINDOW_H

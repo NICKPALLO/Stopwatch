@@ -118,6 +118,9 @@
       </item>
       <item>
        <widget class="QPushButton" name="pb_cirlce">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
           <horstretch>0</horstretch>

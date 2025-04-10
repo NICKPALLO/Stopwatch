@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setWindowTitle("Секундомер");
     active = false;
+    stopwatch = new Stopwatch(this);
+    connect(stopwatch,&Stopwatch::sendTime,this,&MainWindow::timeChanged);
+    connect(stopwatch, &Stopwatch::sendCircle,this,&MainWindow::getCircleTime);
 }
 
 MainWindow::~MainWindow()
@@ -30,21 +33,23 @@ void MainWindow::on_pb_start_stop_clicked()
     if (active)
     {
         active = false;
+        ui->pb_cirlce->setEnabled(false);
         ui->pb_start_stop->setText("Старт");
-        emit sendStop();
+        stopwatch->timerStop();
     }
     else
     {
         active = true;
+        ui->pb_cirlce->setEnabled(true);
         ui->pb_start_stop->setText("Стоп");
-        emit sendStart();
+        stopwatch->timerStart();
     }
 }
 
 
 void MainWindow::on_pb_clear_clicked()
 {
-    emit sendClear();
+    stopwatch->timerClear();
     ui->tb_result->clear();
     ui->label_time->setText("00:00:00:0");
 }
@@ -54,7 +59,7 @@ void MainWindow::on_pb_cirlce_clicked()
 {
     if (active)
     {
-        emit nextCirlce();
+        stopwatch->nextCircle();
     }
 }
 
