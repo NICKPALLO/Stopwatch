@@ -27,13 +27,13 @@ void Stopwatch::timerClear()
     circleNum = 0;
 }
 
-void Stopwatch::nextCircle()
+QString Stopwatch::nextCircle()
 {
     circleNum++;
     QString message = "Круг " + QString::number(circleNum) +
                       ", время: " + QString::number(circleTime.secsTo(time)) + " c";
     circleTime = time;
-    emit sendCircle(message);
+    return message;
 }
 
 void Stopwatch::timerSlot()

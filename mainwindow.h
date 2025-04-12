@@ -19,7 +19,6 @@ public:
     ~MainWindow();
 public slots:
     void timeChanged(const QTime& time);
-    void getCircleTime(const QString message);
 private slots:
     void on_pb_start_stop_clicked();
 

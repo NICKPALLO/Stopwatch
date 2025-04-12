@@ -13,10 +13,9 @@ public:
     void timerStart();
     void timerStop();
     void timerClear();
-    void nextCircle();
+    QString nextCircle();
 signals:
     void sendTime(const QTime& time);
-    void sendCircle(const QString message);
 private slots:
     void timerSlot();
 private:

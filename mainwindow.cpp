@@ -10,7 +10,6 @@ MainWindow::MainWindow(QWidget *parent)
     active = false;
     stopwatch = new Stopwatch(this);
     connect(stopwatch,&Stopwatch::sendTime,this,&MainWindow::timeChanged);
-    connect(stopwatch, &Stopwatch::sendCircle,this,&MainWindow::getCircleTime);
 }
 
 MainWindow::~MainWindow()
@@ -21,11 +20,6 @@ MainWindow::~MainWindow()
 void MainWindow::timeChanged(const QTime& time)
 {
     ui->label_time->setText(time.toString("hh:mm:ss:z"));
-}
-
-void MainWindow::getCircleTime(const QString message)
-{
-    ui->tb_result->append(message);
 }
 
 void MainWindow::on_pb_start_stop_clicked()
@@ -59,7 +53,7 @@ void MainWindow::on_pb_cirlce_clicked()
 {
     if (active)
     {
-        stopwatch->nextCircle();
+        ui->tb_result->append(stopwatch->nextCircle());
     }
 }
 
